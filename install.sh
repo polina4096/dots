@@ -11,7 +11,7 @@ if [ $1 -eq 0 ]; then
 fi
 
 # Install packages
-xbps-install --yes zsh rsync wget git sway Waybar wob pipewire wireplumber pavucontrol elogind dbus-elogind polkit-elogind rtkit eudev chrony xorg-minimal mpv imv foot font-iosevka font-awesome6 micro vscode rustup firefox neofetch libvirt qemu virt-manager xtools fzf light slop ImageMagick ffmpeg yt-dlp grim wl-clipboard slurp pcmanfm
+xbps-install --yes zsh rsync wget git sway Waybar wob pipewire wireplumber pavucontrol elogind dbus-elogind polkit-elogind rtkit eudev chrony xorg-minimal mpv imv foot font-iosevka font-awesome6 micro vscode rustup firefox neofetch libvirt qemu virt-manager xtools fzf light slop ImageMagick ffmpeg yt-dlp grim wl-clipboard slurp pcmanfm dunst
 
 rustup-init -y --default-toolchain nightly
 cargo install exa
