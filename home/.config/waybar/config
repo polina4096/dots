@@ -1,0 +1,167 @@
+// =============================================================================
+//
+// Waybar configuration
+//
+// Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+//
+// =============================================================================
+
+{
+    // -------------------------------------------------------------------------
+    // Global configuration
+    // -------------------------------------------------------------------------
+
+    "layer": "top",
+
+    "position": "top",
+    "fixed-center": false,
+
+    // If height property would be not present, it'd be calculated dynamically
+    "height": 30,
+    "spacing": 8,
+
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode",
+    ],
+    "modules-center": [
+        "sway/window"
+    ],
+    "modules-right": [
+        "network",
+        "memory",
+        "cpu",
+        "temperature",
+        "backlight",
+        "battery",
+        "wireplumber",
+        "tray",
+        "clock"
+    ],
+
+
+    // -------------------------------------------------------------------------
+    // Modules
+    // -------------------------------------------------------------------------
+
+	"wireplumber": {
+	    "format": "{icon} {volume}%",
+	    "format-muted": "",
+	    "on-click": "pavucontrol",
+	    "format-icons": ["", "", ""]
+	},
+
+	"backlight": {
+	    "device": "intel_backlight",
+	    "format": "{icon} {percent}%",
+	    "format-icons": ["", ""]
+	},
+
+    "battery": {
+        "interval": 10,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        // Connected to AC
+        "format": " {capacity}%", // Icon: bolt
+        // Not connected to AC
+        "format-discharging": "{icon}  {capacity}%",
+        "format-icons": [
+            "", // Icon: battery-full
+            "", // Icon: battery-three-quarters
+            "", // Icon: battery-half
+            "", // Icon: battery-quarter
+            ""  // Icon: battery-empty
+        ],
+        "tooltip": true
+    },
+
+    "clock": {
+        "interval": 1,
+        "format": "{:%H:%M:%S}",
+        "tooltip-format": "{:%D}"
+    },
+
+    "cpu": {
+        "interval": 5,
+        "format": " {usage:2}%", // Icon: microchip
+        "states": {
+          "warning": 70,
+          "critical": 90
+        }
+    },
+
+    "memory": {
+        "interval": 5,
+        "format": " {:2}%", // Icon: memory
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+
+    "network": {
+        "interval": 10,
+        "format-wifi": " {essid}@{frequency}GHz", // Icon: wifi
+        "format-disconnected": "⚠  Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}"
+    },
+
+    "sway/mode": {
+        "format": "<span style=\"italic\">  {}</span>", // Icon: expand-arrows-alt
+        "tooltip": false
+    },
+
+    "sway/window": {
+        "format": "{}",
+        "max-length": 120
+    },
+
+    "sway/workspaces": {
+        "all-outputs": false,
+        "disable-scroll": true,
+        "format": "{icon} {name}",
+        "format-icons": {
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+
+    //"pulseaudio": {
+    //    //"scroll-step": 1,
+    //    "format": "{icon}  {volume}%",
+    //    "format-bluetooth": "{icon}  {volume}%",
+    //    "format-muted": "",
+    //    "format-icons": {
+    //        "headphones": "",
+    //        "handsfree": "",
+    //        "headset": "",
+    //        "phone": "",
+    //        "portable": "",
+    //        "car": "",
+    //        "default": ["", ""]
+    //    },
+    //    "on-click": "pavucontrol"
+    //},
+
+    "temperature": {
+      "critical-threshold": 80,
+      "interval": 5,
+      "format": "{icon} {temperatureC:2}°C",
+      "format-icons": [
+          "", // Icon: temperature-empty
+          "", // Icon: temperature-quarter
+          "", // Icon: temperature-half
+          "", // Icon: temperature-three-quarters
+          ""  // Icon: temperature-full
+      ],
+      "tooltip": true
+    },
+
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    }
+}

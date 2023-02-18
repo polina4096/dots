@@ -1,0 +1,61 @@
+#titlebar, #sidebar-header, #back-button, #forward-button, #PersonalToolbar {
+  display: none;
+}
+
+#urlbar-container {
+  
+  margin: 0 0 -8px!important;
+  padding: 0!important;
+}
+
+#urlbar-background {
+  border-radius: 0!important;
+}
+
+#PanelUI-menu-button {
+  padding-inline-end: 0!important;
+  padding: 0;
+}
+
+#urlbar-background, #searchbar {
+    background-color: #292929!important;
+}
+
+.browser-toolbar:not(.titlebar-color) {
+    background-color: #323232!important;
+}
+
+#navigator-toolbox {
+  border-bottom: 2px solid #404040!important;
+}
+
+.sidebar-splitter {
+  width: 2px!important;
+  background: #404040!important;
+  border: none!important;
+}
+
+:root {
+  --urlbar-icon-border-radius: 0px!important;
+  --urlbar-box-bgcolor: #404040!important;
+}
+
+#identity-icon-box:hover,
+#tracking-protection-icon-container:hover {
+  background-color: #404040!important;
+}
+
+.toolbarbutton-badge-stack,
+.unified-extensions-item-action-button,
+.toolbarbutton-icon,
+#identity-icon-box {
+  border-radius: 0px!important;
+}
+
+#urlbar #urlbar-search-mode-indicator {
+  background: #404040!important;
+}
+
+#urlbar[focused="true"] #urlbar-search-mode-indicator {
+  background: #404040!important;
+}
