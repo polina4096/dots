@@ -1,8 +1,12 @@
+-- Keep references to Hammerspoon objects to prevent garbage collection.
+local _keep = {}
+local function keep(it) _keep[#_keep + 1] = it return it end
+
 -- Disable window move animations.
 hs.window.animationDuration = 0
 
 -- Cmd+Enter: open a new Ghostty terminal window (centered on the current space).
-hs.hotkey.bind({"cmd"}, "return", function()
+keep(hs.hotkey.bind({"cmd"}, "return", function()
   local app = hs.application.get("com.mitchellh.ghostty")
   if not app then
     hs.application.launchOrFocusByBundleID("com.mitchellh.ghostty")
@@ -48,21 +52,18 @@ hs.hotkey.bind({"cmd"}, "return", function()
       end
     end
   end, 0.05)
-end)
+end))
 
 -- Instant CapsLock language switch.
 -- CapsLock is remapped to F18 via hidutil; this catches F18 and cycles input sources.
-hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(event)
-  if event:getKeyCode() == 79 then -- F18
-    local layouts = hs.keycodes.layouts(true)
-    local current = hs.keycodes.currentSourceID()
-    local idx
-    for i, v in ipairs(layouts) do
-      if v == current then idx = i break end
-    end
-    if idx then
-      hs.keycodes.currentSourceID(layouts[idx % #layouts + 1])
-    end
-    return true
+keep(hs.hotkey.bind({}, "f18", function()
+  local layouts = hs.keycodes.layouts(true)
+  local current = hs.keycodes.currentSourceID()
+  local idx
+  for i, v in ipairs(layouts) do
+    if v == current then idx = i break end
   end
-end):start()
+  if idx then
+    hs.keycodes.currentSourceID(layouts[idx % #layouts + 1])
+  end
+end))
