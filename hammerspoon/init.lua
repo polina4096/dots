@@ -1,3 +1,6 @@
+-- Disable window move animations.
+hs.window.animationDuration = 0
+
 -- Cmd+Enter: open a new Ghostty terminal window (centered on the current space).
 hs.hotkey.bind({"cmd"}, "return", function()
   local app = hs.application.get("com.mitchellh.ghostty")
@@ -6,6 +9,8 @@ hs.hotkey.bind({"cmd"}, "return", function()
     return
   end
 
+  local targetSpace = hs.spaces.focusedSpace()
+  local targetScreen = hs.mouse.getCurrentScreen()
   local before = {}
   for _, w in ipairs(app:allWindows()) do before[w:id()] = true end
 
@@ -17,7 +22,7 @@ hs.hotkey.bind({"cmd"}, "return", function()
     end tell
   ]])
 
-  -- Wait for the new window and center it.
+  -- Wait for the new window, move it to the current space/screen, and center it.
   hs.timer.waitUntil(function()
     local a = hs.application.get("com.mitchellh.ghostty")
     if not a then return false end
@@ -29,7 +34,15 @@ hs.hotkey.bind({"cmd"}, "return", function()
     local a = hs.application.get("com.mitchellh.ghostty")
     for _, w in ipairs(a:allWindows()) do
       if not before[w:id()] then
-        w:centerOnScreen()
+        hs.spaces.moveWindowToSpace(w:id(), targetSpace)
+        local sf = targetScreen:frame()
+        local wf = w:frame()
+        w:setFrame({
+          x = sf.x + (sf.w - wf.w) / 2,
+          y = sf.y + (sf.h - wf.h) / 2,
+          w = wf.w,
+          h = wf.h,
+        })
         w:focus()
         return
       end
