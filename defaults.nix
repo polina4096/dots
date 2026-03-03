@@ -178,8 +178,9 @@
       echo "WARNING: Hammerspoon is not installed. Install it from https://github.com/Hammerspoon/hammerspoon/releases" >&2
     fi
 
-    # Symlink Hammerspoon config.
+    # Symlink Hammerspoon config and reload.
     mkdir -p /Users/polina4096/.hammerspoon
     ln -sf ${./hammerspoon/init.lua} /Users/polina4096/.hammerspoon/init.lua
+    open -g hammerspoon://reload 2>/dev/null || true
   '';
 }
