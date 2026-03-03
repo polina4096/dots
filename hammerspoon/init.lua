@@ -1,12 +1,21 @@
 -- Cmd+Enter: open a new Ghostty terminal window (centered on the current space).
 hs.hotkey.bind({"cmd"}, "return", function()
-  local before = {}
   local app = hs.application.get("com.mitchellh.ghostty")
-  if app then
-    for _, w in ipairs(app:allWindows()) do before[w:id()] = true end
+  if not app then
+    hs.application.launchOrFocusByBundleID("com.mitchellh.ghostty")
+    return
   end
 
-  hs.task.new("/Applications/Ghostty.app/Contents/MacOS/ghostty", nil):start()
+  local before = {}
+  for _, w in ipairs(app:allWindows()) do before[w:id()] = true end
+
+  hs.osascript.applescript([[
+    tell application "System Events"
+      tell process "Ghostty"
+        click menu item "New Window" of menu "File" of menu bar 1
+      end tell
+    end tell
+  ]])
 
   -- Wait for the new window and center it.
   hs.timer.waitUntil(function()
@@ -21,6 +30,7 @@ hs.hotkey.bind({"cmd"}, "return", function()
     for _, w in ipairs(a:allWindows()) do
       if not before[w:id()] then
         w:centerOnScreen()
+        w:focus()
         return
       end
     end
