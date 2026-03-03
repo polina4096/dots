@@ -151,6 +151,9 @@
   # Disable tiled windows margins.
   system.defaults.WindowManager.EnableTiledWindowMargins = false;
 
+  # Disable click wallpaper to reveal desktop.
+  system.defaults.WindowManager.EnableStandardClickToShowDesktop = false;
+
   # Energy Mode: High Power on battery and power adapter.
   # Values: 0 = Automatic, 1 = Low Power, 2 = High Power.
   system.activationScripts.postActivation.text = ''
