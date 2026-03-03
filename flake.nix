@@ -16,6 +16,7 @@
         git
         p7zip
         ripgrep
+        yazi
         ffmpeg-full
         imagemagick
         curl
