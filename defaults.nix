@@ -181,6 +181,7 @@
     # Register Zulu JDK 17 with macOS.
     mkdir -p /Library/Java/JavaVirtualMachines
     ln -sfn ${pkgs.zulu17}/Library/Java/JavaVirtualMachines/zulu-17.jdk /Library/Java/JavaVirtualMachines/zulu-17.jdk
+    ln -sfn ${pkgs.zulu21}/Library/Java/JavaVirtualMachines/zulu-21.jdk /Library/Java/JavaVirtualMachines/zulu-21.jdk
 
     # Symlink Hammerspoon config and reload.
     mkdir -p /Users/polina4096/.hammerspoon
