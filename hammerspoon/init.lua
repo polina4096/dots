@@ -1,3 +1,8 @@
+-- Cmd+Enter: open a new Ghostty terminal window (on the current space).
+hs.hotkey.bind({"cmd"}, "return", function()
+  hs.task.new("/Applications/Ghostty.app/Contents/MacOS/ghostty", nil):start()
+end)
+
 -- Instant CapsLock language switch.
 -- CapsLock is remapped to F18 via hidutil; this catches F18 and cycles input sources.
 hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(event)
