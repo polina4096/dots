@@ -94,6 +94,9 @@
 
       # Disable shake mouse pointer to locate.
       CGDisableCursorLocationMagnification = true;
+
+      # Double-click title bar to fill (new snapping).
+      AppleActionOnDoubleClick = "Fill";
     };
 
     # More dock settings.
@@ -163,5 +166,17 @@
       /private/var/root/Library/Preferences/com.apple.CoreBrightness.plist
     killall cfprefsd 2>/dev/null
     killall corebrightnessd 2>/dev/null
+
+    # Remap CapsLock to F18 (used by Hammerspoon for language switching).
+    /usr/bin/hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x70000006D}]}' > /dev/null
+
+    # Check if Hammerspoon is installed (needed for CapsLock language switch).
+    if [ ! -d /Applications/Hammerspoon.app ] && [ ! -d "$HOME/Applications/Hammerspoon.app" ]; then
+      echo "WARNING: Hammerspoon is not installed. Install it from https://github.com/Hammerspoon/hammerspoon/releases" >&2
+    fi
+
+    # Symlink Hammerspoon config.
+    mkdir -p /Users/polina4096/.hammerspoon
+    ln -sf ${./hammerspoon/init.lua} /Users/polina4096/.hammerspoon/init.lua
   '';
 }
