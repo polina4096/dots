@@ -23,6 +23,7 @@
         wget
         yt-dlp
         hyfetch
+        fnm
       ];
 
       # Necessary for using flakes on this system.
