@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   system.primaryUser = "polina4096";
 
   # Disable "Are you sure you want to open this file?" security prompt.
@@ -177,6 +177,10 @@
     if [ ! -d /Applications/Hammerspoon.app ] && [ ! -d "$HOME/Applications/Hammerspoon.app" ]; then
       echo "WARNING: Hammerspoon is not installed. Install it from https://github.com/Hammerspoon/hammerspoon/releases" >&2
     fi
+
+    # Register Zulu JDK 17 with macOS.
+    mkdir -p /Library/Java/JavaVirtualMachines
+    ln -sfn ${pkgs.zulu17}/Library/Java/JavaVirtualMachines/zulu-17.jdk /Library/Java/JavaVirtualMachines/zulu-17.jdk
 
     # Symlink Hammerspoon config and reload.
     mkdir -p /Users/polina4096/.hammerspoon

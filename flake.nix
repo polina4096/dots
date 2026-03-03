@@ -24,6 +24,7 @@
         yt-dlp
         hyfetch
         fnm
+        zulu17
       ];
 
       # Necessary for using flakes on this system.
