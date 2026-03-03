@@ -25,6 +25,7 @@
         hyfetch
         fnm
         zulu17
+        android-tools
       ];
 
       # Necessary for using flakes on this system.
