@@ -22,6 +22,7 @@
         curl
         wget
         yt-dlp
+        macchina
         hyfetch
         fnm
         zulu17
