@@ -135,6 +135,10 @@
       skip-verify-remote = true;
     };
 
+    # Disable two-finger double-tap smart zoom.
+    "com.apple.AppleMultitouchTrackpad".TrackpadTwoFingerDoubleTapGesture = 0;
+    "com.apple.driver.AppleBluetoothMultitouch.trackpad".TrackpadTwoFingerDoubleTapGesture = 0;
+
     # Less intrusive crash reporter.
     "com.apple.CrashReporter".UseUNC = 1;
 
