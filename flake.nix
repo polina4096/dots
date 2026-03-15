@@ -21,6 +21,7 @@
         imagemagick
         curl
         wget
+        gitui
         yt-dlp
         macchina
         hyfetch
