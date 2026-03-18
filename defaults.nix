@@ -59,6 +59,7 @@
 
   # Dock settings.
   system.defaults.dock = {
+    mineffect = "scale";
     mru-spaces = false;
     orientation = "bottom";
     show-recents = false;
@@ -89,6 +90,9 @@
       # Disable window animations.
       NSAutomaticWindowAnimationsEnabled = 0;
 
+      # Instant hide animation.
+      NSUIElementAnimationsEnabled = 0;
+
       # Enable WebKit developer extras.
       WebKitDeveloperExtras = true;
 
@@ -103,7 +107,7 @@
     "com.apple.dock" = {
       autohide = true;
       autohide-delay = 0.25;
-      autohide-time-modifier = 0.5;
+      autohide-time-modifier = 0;
       size-immutable = true;
       no-bouncing = true;
     };
