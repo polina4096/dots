@@ -1,6 +1,9 @@
 { pkgs, ... }: {
   system.primaryUser = "polina4096";
 
+  # Use fish as the default shell.
+  users.users.polina4096.shell = pkgs.fish;
+
   # Disable "Are you sure you want to open this file?" security prompt.
   system.defaults.LaunchServices.LSQuarantine = false;
 

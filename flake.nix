@@ -14,6 +14,7 @@
       # To search by name, run: `nix-env -qaP | grep wget`
       environment.systemPackages = with pkgs; [
         git
+        fish
         p7zip
         ripgrep
         yazi
@@ -42,6 +43,10 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 6;
       nixpkgs.hostPlatform = "aarch64-darwin";
+
+      # Use fish as the default shell.
+      programs.fish.enable = true;
+      environment.shells = [ pkgs.fish ];
     };
   in
   {
