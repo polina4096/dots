@@ -26,6 +26,7 @@
         macchina
         hyfetch
         fnm
+        llvm
         zulu17
         zulu21
         android-tools
