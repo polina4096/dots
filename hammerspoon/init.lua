@@ -76,6 +76,48 @@ keep(hs.hotkey.bind({ "cmd" }, "return", function()
   end, 0.01)
 end))
 
+-- Workspace switching via swoosher.
+-- Uses os.execute with backgrounded nc to avoid polluting Hammerspoon's async runloop.
+local swoosherSocketPath = os.getenv("HOME") .. "/.local/state/swoosher/daemon.sock"
+
+local function swoosherSend(cmd)
+  os.execute("printf '" .. cmd .. "\\n' | /usr/bin/nc -U " .. swoosherSocketPath .. " &")
+end
+
+local digitKeyCodes = {
+  [18] = 1, [19] = 2, [20] = 3, [21] = 4, [23] = 5,
+}
+local arrowKeyCodes = {
+  [123] = "left", [124] = "right",
+}
+
+local swoosherTap = hs.eventtap.new({ hs.eventtap.event.types.keyDown }, function(event)
+  local flags = event:getFlags()
+  local keyCode = event:getKeyCode()
+
+  local digit = digitKeyCodes[keyCode]
+  if digit and flags.ctrl and not flags.cmd and not flags.alt then
+    local index = flags.shift and (digit + 5) or digit
+    swoosherSend("index " .. index)
+    return true
+  end
+
+  local arrow = arrowKeyCodes[keyCode]
+  if arrow and flags.ctrl and not flags.cmd and not flags.alt and not flags.shift then
+    swoosherSend(arrow)
+    return true
+  end
+
+  return false
+end)
+swoosherTap:start()
+keep(swoosherTap)
+
+-- Re-enable the eventtap if macOS disables it.
+keep(hs.timer.new(1, function()
+  if not swoosherTap:isEnabled() then swoosherTap:start() end
+end):start())
+
 -- Instant CapsLock language switch.
 -- CapsLock is remapped to F18 via hidutil; this catches F18 and cycles input sources.
 keep(hs.hotkey.bind({}, "f18", function()
