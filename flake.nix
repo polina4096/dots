@@ -14,6 +14,13 @@
       # To search by name, run: `nix-env -qaP | grep wget`
       environment.systemPackages = with pkgs; [
         git
+        # GStreamer core + plugins (bare `gstreamer` is core-only, no codecs)
+        gst_all_1.gstreamer
+        gst_all_1.gst-plugins-base
+        gst_all_1.gst-plugins-good
+        gst_all_1.gst-plugins-bad
+        gst_all_1.gst-plugins-ugly
+        gst_all_1.gst-libav
         fish
         p7zip
         ripgrep
@@ -27,10 +34,16 @@
         macchina
         hyfetch
         fnm
+        mpv
+        cmake
         llvm
         zulu17
         zulu21
         android-tools
+        openssl.dev
+        pkg-config
+        stgit
+        lua
       ];
 
       # Necessary for using flakes on this system.

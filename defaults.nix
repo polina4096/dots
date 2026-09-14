@@ -149,9 +149,6 @@
     # Less intrusive crash reporter.
     "com.apple.CrashReporter".UseUNC = 1;
 
-    # Improve help viewer UX by making it a window.
-    "com.apple.helpviewer".DevMode = true;
-
     # Activity monitor tweaks.
     "com.apple.ActivityMonitor" = {
       ShowCategory = 0;
